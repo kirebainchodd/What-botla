@@ -12,6 +12,20 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: rockedbd
+          POSTGRES_PASSWORD: RK9tpJpRRMM4HPMQ
+          POSTGRES_DB: mydatabase
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     strategy:
       matrix:
